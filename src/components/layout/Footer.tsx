@@ -20,8 +20,7 @@ export function Footer() {
           <h4 className="label-wide text-ink/60 mb-4">Index</h4>
           <ul className="space-y-2.5">
             {[
-              { to: '/bridal', label: 'Bridal' },
-              { to: '/atelier', label: 'Atelier' },
+              { to: '/portfolio', label: 'Portfolio' },
               { to: '/about', label: 'About' },
               { to: '/contact', label: 'Contact' },
             ].map((l) => (

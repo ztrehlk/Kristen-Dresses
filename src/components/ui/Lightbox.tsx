@@ -1,11 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useEffect } from 'react';
 import { useLockBodyScroll } from '../../hooks/useLockBodyScroll';
-import type { Look } from '../../data/collections';
 
 type Props = {
-  looks: Look[];
-  /** Index of the currently visible look, or null when closed. */
+  images: string[];
+  /** Title of the piece these images belong to. Shown in the caption. */
+  title: string;
+  /** Index of the currently visible image, or null when closed. */
   index: number | null;
   onClose: () => void;
   onChange: (i: number) => void;
@@ -15,19 +16,19 @@ type Props = {
  * Full-screen image viewer with keyboard navigation. Backdrop click closes.
  * Image fades cross-style on index change so jumps don't feel jarring.
  */
-export function Lightbox({ looks, index, onClose, onChange }: Props) {
+export function Lightbox({ images, title, index, onClose, onChange }: Props) {
   const open = index !== null;
   useLockBodyScroll(open);
 
   const next = useCallback(() => {
     if (index === null) return;
-    onChange((index + 1) % looks.length);
-  }, [index, looks.length, onChange]);
+    onChange((index + 1) % images.length);
+  }, [index, images.length, onChange]);
 
   const prev = useCallback(() => {
     if (index === null) return;
-    onChange((index - 1 + looks.length) % looks.length);
-  }, [index, looks.length, onChange]);
+    onChange((index - 1 + images.length) % images.length);
+  }, [index, images.length, onChange]);
 
   useEffect(() => {
     if (!open) return;
@@ -40,11 +41,11 @@ export function Lightbox({ looks, index, onClose, onChange }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, [open, onClose, next, prev]);
 
-  const current = index !== null ? looks[index] : null;
+  const currentSrc = index !== null ? images[index] : null;
 
   return (
     <AnimatePresence>
-      {open && current && (
+      {open && currentSrc && (
         <motion.div
           key="lightbox"
           initial={{ opacity: 0 }}
@@ -57,7 +58,8 @@ export function Lightbox({ looks, index, onClose, onChange }: Props) {
           {/* Top bar */}
           <div className="flex items-center justify-between px-6 py-5 md:px-10">
             <span className="label text-ink/70">
-              {String((index ?? 0) + 1).padStart(2, '0')} / {String(looks.length).padStart(2, '0')}
+              {String((index ?? 0) + 1).padStart(2, '0')} /{' '}
+              {String(images.length).padStart(2, '0')}
             </span>
             <button
               type="button"
@@ -79,9 +81,9 @@ export function Lightbox({ looks, index, onClose, onChange }: Props) {
             <div className="mx-auto h-full max-w-5xl">
               <AnimatePresence mode="wait">
                 <motion.img
-                  key={current.id}
-                  src={current.imageUrl}
-                  alt={current.title}
+                  key={currentSrc}
+                  src={currentSrc}
+                  alt={`${title} — ${(index ?? 0) + 1}`}
                   initial={{ opacity: 0, scale: 0.99 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.99 }}
@@ -125,16 +127,11 @@ export function Lightbox({ looks, index, onClose, onChange }: Props) {
           <div className="px-6 pb-8 md:px-10">
             <div className="mx-auto max-w-5xl border-t hairline pt-4">
               <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-                <h3 className="display-italic text-2xl md:text-3xl">
-                  {current.title}
-                </h3>
-                <span className="label text-ink/60">{current.year}</span>
+                <h3 className="display-italic text-2xl md:text-3xl">{title}</h3>
+                <span className="label text-ink/60">
+                  Image {String((index ?? 0) + 1).padStart(2, '0')}
+                </span>
               </div>
-              {current.description && (
-                <p className="editorial mt-2 max-w-xl text-pewter">
-                  {current.description}
-                </p>
-              )}
             </div>
           </div>
         </motion.div>

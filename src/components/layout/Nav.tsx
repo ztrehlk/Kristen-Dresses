@@ -5,8 +5,7 @@ import { useScrollDirection } from '../../hooks/useScrollDirection';
 import { useLockBodyScroll } from '../../hooks/useLockBodyScroll';
 
 const NAV_LINKS = [
-  { to: '/bridal', label: 'Bridal' },
-  { to: '/atelier', label: 'Atelier' },
+  { to: '/portfolio', label: 'Portfolio' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];

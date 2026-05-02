@@ -6,16 +6,16 @@ import { Footer } from './components/layout/Footer';
 import { Cursor } from './components/ui/Cursor';
 import { PageTransition } from './components/layout/PageTransition';
 import { Home } from './pages/Home';
-import { Bridal } from './pages/Bridal';
-import { Atelier } from './pages/Atelier';
+import { Portfolio } from './pages/Portfolio';
+import { Detail } from './pages/Detail';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 
 export default function App() {
   const location = useLocation();
 
-  // Reset scroll on every route change — without this, route changes inherit the
-  // previous page's scroll position, which feels broken on a long lookbook.
+  // Reset scroll on every route change — without this, route changes inherit
+  // the previous page's scroll position, which feels broken on a long lookbook.
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [location.pathname]);
@@ -36,18 +36,18 @@ export default function App() {
               }
             />
             <Route
-              path="/bridal"
+              path="/portfolio"
               element={
                 <PageTransition>
-                  <Bridal />
+                  <Portfolio />
                 </PageTransition>
               }
             />
             <Route
-              path="/atelier"
+              path="/portfolio/:slug"
               element={
                 <PageTransition>
-                  <Atelier />
+                  <Detail />
                 </PageTransition>
               }
             />

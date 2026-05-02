@@ -1,10 +1,13 @@
-import { Hero } from '../components/sections/Hero';
-import { EditorialSplit } from '../components/sections/EditorialSplit';
-import { ScrollReveal } from '../components/ui/ScrollReveal';
-import { heroImages } from '../data/collections';
 import { Link } from 'react-router-dom';
+import { Hero } from '../components/sections/Hero';
+import { LookbookGrid } from '../components/sections/LookbookGrid';
+import { ScrollReveal } from '../components/ui/ScrollReveal';
+import { heroImages, pieces } from '../data/collections';
 
 export function Home() {
+  // Show a featured selection on the home grid; the full set lives at /portfolio.
+  const featured = pieces.slice(0, 9);
+
   return (
     <>
       <Hero
@@ -12,28 +15,46 @@ export function Home() {
         eyebrow="Lorem ipsum dolor sit"
         title={'Lorem ipsum<br/><em class="display-italic">dolor sit</em> amet.'}
         subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-        cta={{ to: '/bridal', label: 'Enter the Atelier' }}
+        cta={{ to: '/portfolio', label: 'See the portfolio' }}
       />
 
-      {/* Marquee — placeholder words; swap for real ones later */}
       <Marquee />
 
-      <EditorialSplit
-        eyebrow="01 — Bridal"
-        title={'Lorem ipsum<br/>dolor <em class="display-italic">sit amet.</em>'}
-        body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        imageUrl={heroImages.bridal}
-        cta={{ to: '/bridal', label: 'See bridal' }}
-      />
+      {/* Featured masonry preview */}
+      <section className="pt-16 md:pt-24">
+        <div className="mb-10 flex items-end justify-between px-6 md:mb-14 md:px-10">
+          <div>
+            <span className="label-wide text-pewter">— Selected work</span>
+            <h2 className="display-xl mt-3 text-4xl leading-[0.96] md:text-6xl">
+              Lorem <em className="display-italic">ipsum.</em>
+            </h2>
+          </div>
+          <Link
+            to="/portfolio"
+            className="group hidden items-center gap-3 border-b hairline-strong pb-1.5 label hover:border-ink transition-colors md:inline-flex"
+          >
+            View all
+            <span className="inline-block transition-transform duration-500 ease-editorial group-hover:translate-x-2">
+              →
+            </span>
+          </Link>
+        </div>
 
-      <EditorialSplit
-        eyebrow="02 — Atelier"
-        title={'Lorem ipsum dolor.<br/><em class="display-italic">Consectetur</em> adipiscing.'}
-        body="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        imageUrl={heroImages.atelier}
-        cta={{ to: '/atelier', label: 'See the line' }}
-        imageSide="right"
-      />
+        <LookbookGrid pieces={featured} />
+
+        {/* Mobile-only "view all" link below the grid */}
+        <div className="mt-10 px-6 md:hidden">
+          <Link
+            to="/portfolio"
+            className="group inline-flex items-center gap-3 border-b hairline-strong pb-1.5 label hover:border-ink transition-colors"
+          >
+            View all work
+            <span className="inline-block transition-transform duration-500 ease-editorial group-hover:translate-x-2">
+              →
+            </span>
+          </Link>
+        </div>
+      </section>
 
       {/* About teaser */}
       <section className="px-6 py-24 md:px-10 md:py-36">
@@ -70,7 +91,6 @@ export function Home() {
 
 function Marquee() {
   const items = ['Lorem', '·', 'Ipsum', '·', 'Dolor sit amet', '·', 'Consectetur adipiscing', '·'];
-  // Repeat enough times to fill any viewport without gaps.
   const reel = [...items, ...items, ...items, ...items];
   return (
     <div className="overflow-hidden border-y hairline py-6">

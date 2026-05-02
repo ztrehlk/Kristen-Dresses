@@ -1,98 +1,81 @@
 /*
-  Lookbook data. PLACEHOLDER state — text is lorem ipsum and images come from
-  picsum.photos so it's obvious nothing here is final. Swap each `imageUrl` and
-  copy field for the real content as it lands.
+  Portfolio data. PLACEHOLDER state — text is lorem ipsum and images come from
+  picsum.photos so it's obvious nothing here is final. Each piece carries a
+  slug (used in the URL), a cover image (shown in the grid), and additional
+  images (shown on the detail page).
+
+  Cover images use varied natural aspect ratios so the masonry grid has a
+  Pinterest-like rhythm — no forced cropping at the grid level. When real
+  photos arrive, replace `coverImage` and the `images` array per piece.
 */
 
-export type Look = {
-  id: string;
+export type Piece = {
+  /** Stable identifier; appears in the URL (/portfolio/:slug). */
+  slug: string;
   title: string;
   year: number;
-  imageUrl: string;
-  /** Grid hint: 'tall' renders double-height, 'wide' double-width, 'normal' single. */
-  span?: 'normal' | 'tall' | 'wide';
+  /**
+   * Image used in masonry grid tiles. Width/height in the URL set the natural
+   * aspect — masonry preserves it, so picking a tall vs short ratio shifts
+   * the tile's footprint in the grid.
+   */
+  coverImage: string;
+  /** Additional photos shown on the detail page, in display order. */
+  images: string[];
   description?: string;
-};
-
-export type Collection = {
-  id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  looks: Look[];
 };
 
 /**
  * Picsum placeholder. Seeded URL so the image is stable across reloads.
- * Aspect-friendly defaults match the lookbook's 4:5 normal slot; pass explicit
- * w/h for tall (3:5), wide (16:9), or hero (full-bleed) ratios.
  */
-const pic = (seed: string, w = 1200, h = 1500) =>
+const pic = (seed: string, w: number, h: number) =>
   `https://picsum.photos/seed/${seed}/${w}/${h}`;
 
 const LOREM_SHORT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 const LOREM_MED =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
-export const bridal: Collection = {
-  id: 'bridal',
-  name: 'Bridal',
-  tagline: 'Lorem ipsum dolor sit amet.',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-  looks: [
-    { id: 'b-01', title: 'Lorem 01', year: 2025, imageUrl: pic('bridal-01', 900, 1500),  span: 'tall',   description: LOREM_SHORT },
-    { id: 'b-02', title: 'Lorem 02', year: 2025, imageUrl: pic('bridal-02'),              span: 'normal', description: LOREM_SHORT },
-    { id: 'b-03', title: 'Lorem 03', year: 2025, imageUrl: pic('bridal-03'),              span: 'normal', description: LOREM_SHORT },
-    { id: 'b-04', title: 'Lorem 04', year: 2024, imageUrl: pic('bridal-04', 1600, 900),  span: 'wide',   description: LOREM_MED },
-    { id: 'b-05', title: 'Lorem 05', year: 2024, imageUrl: pic('bridal-05', 900, 1500),  span: 'tall',   description: LOREM_SHORT },
-    { id: 'b-06', title: 'Lorem 06', year: 2024, imageUrl: pic('bridal-06'),              span: 'normal', description: LOREM_SHORT },
-    { id: 'b-07', title: 'Lorem 07', year: 2024, imageUrl: pic('bridal-07'),              span: 'normal', description: LOREM_SHORT },
-    { id: 'b-08', title: 'Lorem 08', year: 2023, imageUrl: pic('bridal-08'),              span: 'normal', description: LOREM_SHORT },
-  ],
-};
+/**
+ * Build the additional gallery images for a piece. A handful of extra shots
+ * with mixed aspect ratios. Stable per slug.
+ */
+const galleryFor = (slug: string): string[] => [
+  pic(`${slug}-2`, 1400, 1750),
+  pic(`${slug}-3`, 1400, 933),
+  pic(`${slug}-4`, 1200, 1500),
+  pic(`${slug}-5`, 1100, 1400),
+  pic(`${slug}-6`, 1600, 900),
+];
 
-export const atelier: Collection[] = [
-  {
-    id: 'collection-01',
-    name: 'Collection 01',
-    tagline: 'Lorem ipsum dolor.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.',
-    looks: [
-      { id: 'a1-01', title: 'Lorem 01', year: 2025, imageUrl: pic('a1-01', 900, 1500), span: 'tall'   },
-      { id: 'a1-02', title: 'Lorem 02', year: 2025, imageUrl: pic('a1-02'),             span: 'normal' },
-      { id: 'a1-03', title: 'Lorem 03', year: 2025, imageUrl: pic('a1-03'),             span: 'normal' },
-      { id: 'a1-04', title: 'Lorem 04', year: 2025, imageUrl: pic('a1-04', 1600, 900), span: 'wide'   },
-      { id: 'a1-05', title: 'Lorem 05', year: 2025, imageUrl: pic('a1-05'),             span: 'normal' },
-      { id: 'a1-06', title: 'Lorem 06', year: 2025, imageUrl: pic('a1-06'),             span: 'normal' },
-    ],
-  },
-  {
-    id: 'collection-02',
-    name: 'Collection 02',
-    tagline: 'Sed do eiusmod tempor.',
-    description:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    looks: [
-      { id: 'r-01', title: 'Lorem 01', year: 2025, imageUrl: pic('c2-01'),             span: 'normal' },
-      { id: 'r-02', title: 'Lorem 02', year: 2025, imageUrl: pic('c2-02', 900, 1500), span: 'tall'   },
-      { id: 'r-03', title: 'Lorem 03', year: 2025, imageUrl: pic('c2-03'),             span: 'normal' },
-      { id: 'r-04', title: 'Lorem 04', year: 2025, imageUrl: pic('c2-04'),             span: 'normal' },
-    ],
-  },
+/**
+ * Cover aspect ratios chosen to give the masonry good rhythm — a mix of tall
+ * portrait, standard portrait, square, and landscape so columns interleave.
+ */
+export const pieces: Piece[] = [
+  { slug: 'aria',     title: 'Aria',     year: 2025, coverImage: pic('aria-1',     900, 1500), images: galleryFor('aria'),     description: LOREM_MED   },
+  { slug: 'margaux',  title: 'Margaux',  year: 2025, coverImage: pic('margaux-1', 1200, 1500), images: galleryFor('margaux'),  description: LOREM_SHORT },
+  { slug: 'ines',     title: 'Ines',     year: 2025, coverImage: pic('ines-1',    1200, 1200), images: galleryFor('ines'),     description: LOREM_SHORT },
+  { slug: 'selene',   title: 'Selene',   year: 2024, coverImage: pic('selene-1',  1400, 1050), images: galleryFor('selene'),   description: LOREM_MED   },
+  { slug: 'liv',      title: 'Liv',      year: 2024, coverImage: pic('liv-1',      900, 1500), images: galleryFor('liv'),      description: LOREM_SHORT },
+  { slug: 'halle',    title: 'Halle',    year: 2024, coverImage: pic('halle-1',   1200, 1500), images: galleryFor('halle'),    description: LOREM_SHORT },
+  { slug: 'noor',     title: 'Noor',     year: 2024, coverImage: pic('noor-1',    1200, 1800), images: galleryFor('noor'),     description: LOREM_SHORT },
+  { slug: 'vera',     title: 'Vera',     year: 2023, coverImage: pic('vera-1',    1200, 1200), images: galleryFor('vera'),     description: LOREM_SHORT },
+  { slug: 'odette',   title: 'Odette',   year: 2023, coverImage: pic('odette-1',  1000, 1500), images: galleryFor('odette'),   description: LOREM_SHORT },
+  { slug: 'iris',     title: 'Iris',     year: 2023, coverImage: pic('iris-1',    1200, 1500), images: galleryFor('iris'),     description: LOREM_SHORT },
+  { slug: 'mira',     title: 'Mira',     year: 2023, coverImage: pic('mira-1',    1400, 1050), images: galleryFor('mira'),     description: LOREM_MED   },
+  { slug: 'rae',      title: 'Rae',      year: 2022, coverImage: pic('rae-1',     1200, 1500), images: galleryFor('rae'),      description: LOREM_SHORT },
+  { slug: 'juno',     title: 'Juno',     year: 2022, coverImage: pic('juno-1',     900, 1500), images: galleryFor('juno'),     description: LOREM_SHORT },
+  { slug: 'sable',    title: 'Sable',    year: 2022, coverImage: pic('sable-1',   1200, 1500), images: galleryFor('sable'),    description: LOREM_SHORT },
+  { slug: 'wren',     title: 'Wren',     year: 2022, coverImage: pic('wren-1',    1200, 1200), images: galleryFor('wren'),     description: LOREM_SHORT },
 ];
 
 /** Hero imagery for landing and section intros. */
 export const heroImages = {
-  home: pic('hero-home', 2000, 1200),
-  bridal: pic('hero-bridal', 2000, 1200),
-  atelier: pic('hero-atelier', 2000, 1200),
-  about: pic('hero-about', 1400, 1750),
+  home: pic('hero-home',      2000, 1200),
+  portfolio: pic('hero-portfolio', 2000, 1200),
+  about: pic('hero-about',    1400, 1750),
 };
 
-/** Flat list of all looks — useful for prefetch / count. */
-export const allLooks: Look[] = [
-  ...bridal.looks,
-  ...atelier.flatMap((c) => c.looks),
-];
+/** Lookup helper for the detail page. */
+export const findPiece = (slug: string): Piece | undefined =>
+  pieces.find((p) => p.slug === slug);
