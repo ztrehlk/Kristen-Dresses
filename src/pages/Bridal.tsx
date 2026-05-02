@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { LookbookGrid } from '../components/sections/LookbookGrid';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { bridal } from '../data/collections';
@@ -47,15 +48,15 @@ export function Bridal() {
             Bridal commissions open quarterly.{' '}
             <em className="display-italic">Limited slots.</em>
           </p>
-          <a
-            href="/#/contact"
+          <Link
+            to="/contact"
             className="group mt-10 inline-flex items-center gap-3 border-b hairline-strong pb-2 label hover:border-ink transition-colors"
           >
             Inquire about a fitting
             <span className="inline-block transition-transform duration-500 ease-editorial group-hover:translate-x-2">
               →
             </span>
-          </a>
+          </Link>
         </ScrollReveal>
       </section>
     </article>
