@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 /**
- * A small ink dot that follows the cursor on desktop. It scales up when over
- * interactive elements (anchors, buttons, [data-cursor="hover"]). Disabled on
- * touch devices and when prefers-reduced-motion is set.
+ * A small white dot + lagging ring that follows the pointer on desktop.
+ * Uses mix-blend-difference so the cursor inverts against whatever's beneath it
+ * (works on both the bone background and the dark hero photography).
+ *
+ * Disabled on touch devices and when prefers-reduced-motion is set.
  */
 export function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -13,13 +15,26 @@ export function Cursor() {
   const [supported, setSupported] = useState(false);
   const reduced = useReducedMotion();
 
+  // First effect: detect support, flip body data attribute.
+  // This must complete (and trigger a re-render) before refs exist.
   useEffect(() => {
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!canHover || reduced) return;
-
+    if (!canHover || reduced) {
+      setSupported(false);
+      delete document.body.dataset.cursor;
+      return;
+    }
     setSupported(true);
     document.body.dataset.cursor = 'on';
+    return () => {
+      delete document.body.dataset.cursor;
+    };
+  }, [reduced]);
 
+  // Second effect: attach listeners + rAF loop. Runs only after the elements
+  // are mounted (gated on `supported`), so the refs are guaranteed non-null.
+  useEffect(() => {
+    if (!supported) return;
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
@@ -30,10 +45,18 @@ export function Cursor() {
     let ringY = -100;
     let targetX = -100;
     let targetY = -100;
+    let hasMoved = false;
 
     const onMove = (e: MouseEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
+      if (!hasMoved) {
+        // Snap the trailing ring to the pointer on first move so it doesn't
+        // streak in from the corner.
+        ringX = targetX;
+        ringY = targetY;
+        hasMoved = true;
+      }
     };
 
     const onOver = (e: MouseEvent) => {
@@ -45,10 +68,8 @@ export function Cursor() {
 
     let raf = 0;
     const loop = () => {
-      // Dot tracks pointer 1:1 — feels precise.
       dotX = targetX;
       dotY = targetY;
-      // Ring lags with easing — gives the silk feel.
       ringX += (targetX - ringX) * 0.18;
       ringY += (targetY - ringY) * 0.18;
 
@@ -65,18 +86,17 @@ export function Cursor() {
       cancelAnimationFrame(raf);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseover', onOver);
-      delete document.body.dataset.cursor;
     };
-  }, [reduced]);
+  }, [supported]);
 
   if (!supported) return null;
 
   return (
     <>
       {/*
-        The cursor uses mix-blend-difference to invert against any background
-        (light bone or dark hero). For difference blend to actually invert,
-        the element itself must be near-white — a dark element does nothing.
+        Difference-blend inverts the element against the background per channel.
+        White source → strong inversion on any color. A dark source produces no
+        inversion, so this MUST stay white-ish to be visible.
       */}
       <div
         ref={dotRef}
