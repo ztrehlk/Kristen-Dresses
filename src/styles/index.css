@@ -1,0 +1,109 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    /* Subtle paper grain — adds atmosphere without intruding. */
+    background-image:
+      radial-gradient(rgba(15, 15, 16, 0.025) 1px, transparent 1px),
+      radial-gradient(rgba(15, 15, 16, 0.018) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 1px;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+  }
+
+  /* Hide native cursor on desktop hover-capable devices when we render the custom one. */
+  @media (hover: hover) and (pointer: fine) {
+    body[data-cursor='on'] {
+      cursor: none;
+    }
+    body[data-cursor='on'] a,
+    body[data-cursor='on'] button {
+      cursor: none;
+    }
+  }
+}
+
+@layer utilities {
+  .label {
+    font-family: 'Geist', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .label-wide {
+    font-family: 'Geist', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .display-xl {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    line-height: var(--leading-display);
+    letter-spacing: -0.02em;
+  }
+
+  .display-italic {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .editorial {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: var(--leading-snug);
+  }
+
+  .hairline {
+    border-color: var(--hairline);
+  }
+
+  .hairline-strong {
+    border-color: var(--hairline-strong);
+  }
+
+  /* Reset button defaults so they don't break the editorial look. */
+  .reset-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+  }
+}
+
+/* Reduced motion: kill transforms but keep opacity changes instant. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

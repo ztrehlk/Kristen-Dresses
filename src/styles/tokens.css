@@ -1,0 +1,25 @@
+/*
+  Design tokens for Kristen Andron.
+  Editorial-fashion palette: bone background, ink text, pewter for secondary,
+  champagne as a single warm accent. Tokens drive Tailwind's theme.
+*/
+:root {
+  --color-bone: #FAF8F5;
+  --color-bone-deep: #F2EEE7;
+  --color-ink: #0F0F10;
+  --color-pewter: #8B847A;
+  --color-smoke: #C9C4BC;
+  --color-champagne: #C9B69A;
+
+  --hairline: rgba(15, 15, 16, 0.12);
+  --hairline-strong: rgba(15, 15, 16, 0.24);
+
+  /* Typography scale — editorial proportions, not browser defaults. */
+  --leading-tight: 0.95;
+  --leading-display: 1.02;
+  --leading-snug: 1.18;
+  --leading-body: 1.55;
+
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+}
