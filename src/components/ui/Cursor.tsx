@@ -73,20 +73,25 @@ export function Cursor() {
 
   return (
     <>
+      {/*
+        The cursor uses mix-blend-difference to invert against any background
+        (light bone or dark hero). For difference blend to actually invert,
+        the element itself must be near-white — a dark element does nothing.
+      */}
       <div
         ref={dotRef}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[100] h-1.5 w-1.5 rounded-full bg-ink mix-blend-difference"
-        style={{ transition: 'background-color 200ms var(--ease-silk)' }}
+        className="pointer-events-none fixed left-0 top-0 z-[100] h-1.5 w-1.5 rounded-full bg-white mix-blend-difference"
       />
       <div
         ref={ringRef}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[100] rounded-full border border-ink/60 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[100] rounded-full border border-white/90 mix-blend-difference"
         style={{
           width: hovering ? 56 : 28,
           height: hovering ? 56 : 28,
-          transition: 'width 360ms var(--ease-editorial), height 360ms var(--ease-editorial), border-color 240ms',
+          transition:
+            'width 360ms var(--ease-editorial), height 360ms var(--ease-editorial)',
         }}
       />
     </>
