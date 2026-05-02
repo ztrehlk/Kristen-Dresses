@@ -26,8 +26,8 @@ export function Contact() {
           <ScrollReveal className="md:col-span-12">
             <span className="label-wide text-pewter">— Contact</span>
             <h1 className="display-xl mt-5 text-6xl leading-[0.95] md:text-8xl lg:text-[10rem]">
-              Let&rsquo;s{' '}
-              <em className="display-italic">begin a conversation.</em>
+              Lorem ipsum{' '}
+              <em className="display-italic">dolor sit amet.</em>
             </h1>
           </ScrollReveal>
         </div>
@@ -37,8 +37,8 @@ export function Contact() {
         {/* Side info */}
         <ScrollReveal className="md:col-span-4 md:pt-3">
           <p className="editorial text-lg text-ink/75 md:text-xl">
-            Bridal commissions, ready-to-wear orders, press, or anything else.
-            We read every note.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt.
           </p>
           <div className="mt-10 space-y-6 border-t hairline pt-8">
             <div>

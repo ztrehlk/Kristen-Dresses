@@ -11,8 +11,8 @@ export function Footer() {
             </span>
           </Link>
           <p className="editorial mt-4 max-w-md text-pewter text-lg">
-            An atelier in two halves — bridal commissions made over private
-            sittings, and a small ready-to-wear line drawn from the same hand.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export function Footer() {
         <span className="label text-ink/50">
           © {new Date().getFullYear()} Kristen Andron. All rights reserved.
         </span>
-        <span className="label text-ink/50">Made by hand, in studio.</span>
+        <span className="label text-ink/50">Lorem ipsum dolor sit amet.</span>
       </div>
     </footer>
   );

@@ -12,10 +12,7 @@ export function Bridal() {
           <ScrollReveal className="md:col-span-7">
             <span className="label-wide text-pewter">— {bridal.name}</span>
             <h1 className="display-xl mt-5 text-6xl leading-[0.96] md:text-8xl lg:text-9xl">
-              {bridal.tagline.split(' ').slice(0, -2).join(' ')}{' '}
-              <em className="display-italic">
-                {bridal.tagline.split(' ').slice(-2).join(' ')}
-              </em>
+              Lorem ipsum <em className="display-italic">dolor sit.</em>
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.15} className="md:col-span-4 md:col-start-9 md:pt-12">
@@ -45,8 +42,8 @@ export function Bridal() {
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <span className="label-wide text-pewter">— Commissions</span>
           <p className="display-xl mt-6 text-4xl leading-tight md:text-5xl">
-            Bridal commissions open quarterly.{' '}
-            <em className="display-italic">Limited slots.</em>
+            Lorem ipsum dolor sit amet.{' '}
+            <em className="display-italic">Consectetur adipiscing.</em>
           </p>
           <Link
             to="/contact"

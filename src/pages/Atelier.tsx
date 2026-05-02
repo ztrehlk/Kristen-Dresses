@@ -11,13 +11,13 @@ export function Atelier() {
           <ScrollReveal className="md:col-span-8">
             <span className="label-wide text-pewter">— Kristen Andron</span>
             <h1 className="display-xl mt-5 text-6xl leading-[0.96] md:text-8xl lg:text-9xl">
-              The <em className="display-italic">ready-to-wear</em> line.
+              Lorem <em className="display-italic">ipsum</em> dolor sit.
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.15} className="md:col-span-4 md:col-start-9 md:pt-12">
             <p className="editorial text-lg text-ink/75 md:text-xl">
-              A small collection released alongside the bridal practice. Same
-              hand, broader reach.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore.
             </p>
           </ScrollReveal>
         </div>

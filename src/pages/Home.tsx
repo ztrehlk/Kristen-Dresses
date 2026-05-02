@@ -9,27 +9,27 @@ export function Home() {
     <>
       <Hero
         imageUrl={heroImages.home}
-        eyebrow="Atelier Kristen Andron"
-        title={'Made for<br/><em class="display-italic">one woman</em> at a time.'}
-        subtitle="Bridal commissions and a small ready-to-wear line — drafted, fitted, and finished by hand in studio."
+        eyebrow="Lorem ipsum dolor sit"
+        title={'Lorem ipsum<br/><em class="display-italic">dolor sit</em> amet.'}
+        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
         cta={{ to: '/bridal', label: 'Enter the Atelier' }}
       />
 
-      {/* Marquee — soft moving label that feels like masthead bands on print magazines */}
+      {/* Marquee — placeholder words; swap for real ones later */}
       <Marquee />
 
       <EditorialSplit
         eyebrow="01 — Bridal"
-        title={'A gown built<br/>around <em class="display-italic">her.</em>'}
-        body="Each commission begins with a conversation and ends in a private fitting room. A small number of brides per season — never more, by design."
+        title={'Lorem ipsum<br/>dolor <em class="display-italic">sit amet.</em>'}
+        body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         imageUrl={heroImages.bridal}
         cta={{ to: '/bridal', label: 'See bridal' }}
       />
 
       <EditorialSplit
         eyebrow="02 — Atelier"
-        title={'Quiet structure.<br/><em class="display-italic">Wearable</em> architecture.'}
-        body="The ready-to-wear line. Pieces drawn from the same atelier — softer fabrics, broader fit, the same hand."
+        title={'Lorem ipsum dolor.<br/><em class="display-italic">Consectetur</em> adipiscing.'}
+        body="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         imageUrl={heroImages.atelier}
         cta={{ to: '/atelier', label: 'See the line' }}
         imageSide="right"
@@ -43,11 +43,11 @@ export function Home() {
           </ScrollReveal>
           <ScrollReveal delay={0.1} className="md:col-span-8">
             <p className="display-xl text-3xl leading-[1.18] md:text-4xl lg:text-5xl">
-              Kristen designs from a single drafting table, in a single studio.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               <span className="text-ink/40">
                 {' '}
-                Every piece — bridal or otherwise — is finished by the same set
-                of hands.
+                Sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua.
               </span>
             </p>
             <div className="mt-10">
@@ -69,7 +69,7 @@ export function Home() {
 }
 
 function Marquee() {
-  const items = ['Bridal', '·', 'Atelier', '·', 'Made by hand', '·', 'Studio Kristen Andron', '·'];
+  const items = ['Lorem', '·', 'Ipsum', '·', 'Dolor sit amet', '·', 'Consectetur adipiscing', '·'];
   // Repeat enough times to fill any viewport without gaps.
   const reel = [...items, ...items, ...items, ...items];
   return (
