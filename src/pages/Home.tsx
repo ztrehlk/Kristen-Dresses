@@ -5,8 +5,9 @@ import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { heroImages, pieces } from '../data/collections';
 
 export function Home() {
-  // Show a featured selection on the home grid; the full set lives at /portfolio.
-  const featured = pieces.slice(0, 9);
+  // Show a curated subset on the home grid; the full set lives at /portfolio.
+  // Cap at 5 so the home page feels selective and the "View all" CTA does work.
+  const featured = pieces.slice(0, 5);
 
   return (
     <>

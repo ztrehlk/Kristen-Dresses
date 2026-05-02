@@ -88,29 +88,32 @@ export function Detail() {
         </button>
       </ScrollReveal>
 
-      {/* Gallery grid: additional photos */}
-      <section className="mt-4 md:mt-6 px-4 md:px-6">
-        <div className="gallery">
-          {piece.images.map((src, i) => (
-            <button
-              key={src}
-              type="button"
-              data-cursor="hover"
-              onClick={() => setOpenIndex(i + 1)}
-              aria-label={`View ${piece.title}, image ${i + 2}`}
-              className="reset-btn gallery-item group mb-4 block w-full overflow-hidden bg-bone-deep"
-            >
-              <img
-                src={src}
-                alt={`${piece.title} — ${i + 2}`}
-                loading="lazy"
-                className="block w-full h-auto transition-transform duration-[1200ms] ease-editorial group-hover:scale-[1.04]"
-                draggable={false}
-              />
-            </button>
-          ))}
-        </div>
-      </section>
+      {/* Gallery grid: additional photos. Skip the section entirely for
+          pieces that only have a cover so far — avoids an empty container. */}
+      {piece.images.length > 0 && (
+        <section className="mt-4 md:mt-6 px-4 md:px-6">
+          <div className="gallery">
+            {piece.images.map((src, i) => (
+              <button
+                key={src}
+                type="button"
+                data-cursor="hover"
+                onClick={() => setOpenIndex(i + 1)}
+                aria-label={`View ${piece.title}, image ${i + 2}`}
+                className="reset-btn gallery-item group mb-4 block w-full overflow-hidden bg-bone-deep"
+              >
+                <img
+                  src={src}
+                  alt={`${piece.title} — ${i + 2}`}
+                  loading="lazy"
+                  className="block w-full h-auto transition-transform duration-[1200ms] ease-editorial group-hover:scale-[1.04]"
+                  draggable={false}
+                />
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <Lightbox
         images={allImages}

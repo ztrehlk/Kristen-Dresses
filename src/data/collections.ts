@@ -1,11 +1,7 @@
 /*
-  Portfolio data. Real photos for the three pieces shot so far. Add more
-  pieces as new shoots are completed.
-
-  Each piece carries a slug (URL), a cover image (shown in the masonry grid),
-  an `images` array (additional shots shown on the detail page), and a
-  description. To swap or add an image, drop it into /public/photos/ and
-  reference it via the local() helper.
+  Portfolio data. Eight pieces from the shoots received so far. Add new
+  pieces by appending entries to `pieces` below — drop the photos in
+  /public/photos/ and reference them via the local() helper.
 */
 
 export type Piece = {
@@ -32,16 +28,16 @@ const LOREM_SHORT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 const LOREM_MED =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
+/**
+ * Pieces are listed in approximate "show first" order — strongest editorial
+ * sets near the top so the home featured grid pulls a strong selection.
+ */
 export const pieces: Piece[] = [
   {
     slug: 'sirena',
     title: 'Sirena',
     year: 2025,
-    // Full-length on the cobblestone street — most editorial of the set.
     coverImage: local('sirena-05.jpeg'),
-    // Other strong shots from the same shoot, in a deliberate order: first
-    // a couple of front views, then turn into the back/detail shots, then
-    // close-up beadwork last.
     images: [
       local('sirena-01.jpeg'),
       local('sirena-02.jpeg'),
@@ -53,10 +49,21 @@ export const pieces: Piece[] = [
     description: LOREM_MED,
   },
   {
+    slug: 'ruby',
+    title: 'Ruby',
+    year: 2025,
+    // Front portrait in the boutique — best lighting and full silhouette.
+    coverImage: local('ruby-01.jpeg'),
+    images: [
+      local('ruby-02.jpeg'),
+      local('ruby-03.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
+  {
     slug: 'liv',
     title: 'Liv',
     year: 2025,
-    // Walking across the crosswalk — strongest movement and context shot.
     coverImage: local('liv-01.jpeg'),
     images: [
       local('liv-02.jpeg'),
@@ -65,16 +72,58 @@ export const pieces: Piece[] = [
     description: LOREM_SHORT,
   },
   {
+    slug: 'solis',
+    title: 'Solis',
+    year: 2024,
+    // Hand-to-head pose — most dynamic of the two; full silhouette of the
+    // pleated metallic + crown read clearly.
+    coverImage: local('solis-01.jpeg'),
+    images: [
+      local('solis-02.jpeg'),
+    ],
+    description: LOREM_MED,
+  },
+  {
     slug: 'halle',
     title: 'Halle',
     year: 2024,
-    // Tight studio crop — best lighting and the clearest detail of the cut.
     coverImage: local('halle-01.jpeg'),
     images: [
       local('halle-03.jpeg'),
       local('halle-04.jpeg'),
       local('halle-02.jpeg'),
     ],
+    description: LOREM_SHORT,
+  },
+  {
+    slug: 'noir',
+    title: 'Noir',
+    year: 2024,
+    // Centered, hands-on-hips, well-lit — clearest read of the bodice detail.
+    coverImage: local('noir-01.jpeg'),
+    images: [
+      local('noir-02.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
+  {
+    slug: 'marina',
+    title: 'Marina',
+    year: 2023,
+    // Front view, full body — the back/side shot becomes the gallery alt.
+    coverImage: local('marina-01.jpeg'),
+    images: [
+      local('marina-02.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
+  {
+    slug: 'angie',
+    title: 'Angie',
+    year: 2023,
+    // Single studio shot, no additional gallery yet.
+    coverImage: local('angie-01.jpeg'),
+    images: [],
     description: LOREM_SHORT,
   },
 ];
