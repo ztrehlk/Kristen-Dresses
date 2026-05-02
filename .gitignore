@@ -11,6 +11,9 @@ dist-ssr
 # TS build artifacts
 *.tsbuildinfo
 
+# Local working folder for processing source photos
+.staging/
+
 # Editor
 .vscode/*
 !.vscode/extensions.json

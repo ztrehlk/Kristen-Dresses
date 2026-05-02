@@ -1,12 +1,11 @@
 /*
-  Portfolio data. PLACEHOLDER state — text is lorem ipsum and images come from
-  picsum.photos so it's obvious nothing here is final. Each piece carries a
-  slug (used in the URL), a cover image (shown in the grid), and additional
-  images (shown on the detail page).
+  Portfolio data. Real photos for the three pieces shot so far. Add more
+  pieces as new shoots are completed.
 
-  Cover images use varied natural aspect ratios so the masonry grid has a
-  Pinterest-like rhythm — no forced cropping at the grid level. When real
-  photos arrive, replace `coverImage` and the `images` array per piece.
+  Each piece carries a slug (URL), a cover image (shown in the masonry grid),
+  an `images` array (additional shots shown on the detail page), and a
+  description. To swap or add an image, drop it into /public/photos/ and
+  reference it via the local() helper.
 */
 
 export type Piece = {
@@ -14,11 +13,7 @@ export type Piece = {
   slug: string;
   title: string;
   year: number;
-  /**
-   * Image used in masonry grid tiles. Width/height in the URL set the natural
-   * aspect — masonry preserves it, so picking a tall vs short ratio shifts
-   * the tile's footprint in the grid.
-   */
+  /** Image used in the masonry grid tile. */
   coverImage: string;
   /** Additional photos shown on the detail page, in display order. */
   images: string[];
@@ -26,54 +21,73 @@ export type Piece = {
 };
 
 /**
- * Picsum placeholder. Seeded URL so the image is stable across reloads.
+ * Resolve a path under /public/photos/ to its served URL. We prepend Vite's
+ * BASE_URL so the same code works whether the site is served at the root
+ * (custom domain) or under a subpath like /Kristen-Dresses/.
  */
-const pic = (seed: string, w: number, h: number) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+const local = (filename: string): string =>
+  `${import.meta.env.BASE_URL}photos/${filename}`;
 
 const LOREM_SHORT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 const LOREM_MED =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
-/**
- * Build the additional gallery images for a piece. A handful of extra shots
- * with mixed aspect ratios. Stable per slug.
- */
-const galleryFor = (slug: string): string[] => [
-  pic(`${slug}-2`, 1400, 1750),
-  pic(`${slug}-3`, 1400, 933),
-  pic(`${slug}-4`, 1200, 1500),
-  pic(`${slug}-5`, 1100, 1400),
-  pic(`${slug}-6`, 1600, 900),
-];
-
-/**
- * Cover aspect ratios chosen to give the masonry good rhythm — a mix of tall
- * portrait, standard portrait, square, and landscape so columns interleave.
- */
 export const pieces: Piece[] = [
-  { slug: 'aria',     title: 'Aria',     year: 2025, coverImage: pic('aria-1',     900, 1500), images: galleryFor('aria'),     description: LOREM_MED   },
-  { slug: 'margaux',  title: 'Margaux',  year: 2025, coverImage: pic('margaux-1', 1200, 1500), images: galleryFor('margaux'),  description: LOREM_SHORT },
-  { slug: 'ines',     title: 'Ines',     year: 2025, coverImage: pic('ines-1',    1200, 1200), images: galleryFor('ines'),     description: LOREM_SHORT },
-  { slug: 'selene',   title: 'Selene',   year: 2024, coverImage: pic('selene-1',  1400, 1050), images: galleryFor('selene'),   description: LOREM_MED   },
-  { slug: 'liv',      title: 'Liv',      year: 2024, coverImage: pic('liv-1',      900, 1500), images: galleryFor('liv'),      description: LOREM_SHORT },
-  { slug: 'halle',    title: 'Halle',    year: 2024, coverImage: pic('halle-1',   1200, 1500), images: galleryFor('halle'),    description: LOREM_SHORT },
-  { slug: 'noor',     title: 'Noor',     year: 2024, coverImage: pic('noor-1',    1200, 1800), images: galleryFor('noor'),     description: LOREM_SHORT },
-  { slug: 'vera',     title: 'Vera',     year: 2023, coverImage: pic('vera-1',    1200, 1200), images: galleryFor('vera'),     description: LOREM_SHORT },
-  { slug: 'odette',   title: 'Odette',   year: 2023, coverImage: pic('odette-1',  1000, 1500), images: galleryFor('odette'),   description: LOREM_SHORT },
-  { slug: 'iris',     title: 'Iris',     year: 2023, coverImage: pic('iris-1',    1200, 1500), images: galleryFor('iris'),     description: LOREM_SHORT },
-  { slug: 'mira',     title: 'Mira',     year: 2023, coverImage: pic('mira-1',    1400, 1050), images: galleryFor('mira'),     description: LOREM_MED   },
-  { slug: 'rae',      title: 'Rae',      year: 2022, coverImage: pic('rae-1',     1200, 1500), images: galleryFor('rae'),      description: LOREM_SHORT },
-  { slug: 'juno',     title: 'Juno',     year: 2022, coverImage: pic('juno-1',     900, 1500), images: galleryFor('juno'),     description: LOREM_SHORT },
-  { slug: 'sable',    title: 'Sable',    year: 2022, coverImage: pic('sable-1',   1200, 1500), images: galleryFor('sable'),    description: LOREM_SHORT },
-  { slug: 'wren',     title: 'Wren',     year: 2022, coverImage: pic('wren-1',    1200, 1200), images: galleryFor('wren'),     description: LOREM_SHORT },
+  {
+    slug: 'sirena',
+    title: 'Sirena',
+    year: 2025,
+    // Full-length on the cobblestone street — most editorial of the set.
+    coverImage: local('sirena-05.jpeg'),
+    // Other strong shots from the same shoot, in a deliberate order: first
+    // a couple of front views, then turn into the back/detail shots, then
+    // close-up beadwork last.
+    images: [
+      local('sirena-01.jpeg'),
+      local('sirena-02.jpeg'),
+      local('sirena-07.jpeg'),
+      local('sirena-03.jpeg'),
+      local('sirena-04.jpeg'),
+      local('sirena-06.jpeg'),
+    ],
+    description: LOREM_MED,
+  },
+  {
+    slug: 'liv',
+    title: 'Liv',
+    year: 2025,
+    // Walking across the crosswalk — strongest movement and context shot.
+    coverImage: local('liv-01.jpeg'),
+    images: [
+      local('liv-02.jpeg'),
+      local('liv-03.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
+  {
+    slug: 'halle',
+    title: 'Halle',
+    year: 2024,
+    // Tight studio crop — best lighting and the clearest detail of the cut.
+    coverImage: local('halle-01.jpeg'),
+    images: [
+      local('halle-03.jpeg'),
+      local('halle-04.jpeg'),
+      local('halle-02.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
 ];
 
-/** Hero imagery for landing and section intros. */
+/**
+ * Hero imagery for landing and section intros.
+ * `home` is full-bleed at 100svh — uses cover, so portrait photos crop sides.
+ * `about` fills a 4:5 portrait slot in the editorial spread.
+ */
 export const heroImages = {
-  home: pic('hero-home',      2000, 1200),
-  portfolio: pic('hero-portfolio', 2000, 1200),
-  about: pic('hero-about',    1400, 1750),
+  home: local('sirena-05.jpeg'),
+  portfolio: local('sirena-01.jpeg'),
+  about: local('liv-01.jpeg'),
 };
 
 /** Lookup helper for the detail page. */

@@ -3,6 +3,12 @@ import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { pieces } from '../data/collections';
 
 export function Portfolio() {
+  // Compute the year range from the data so the header doesn't drift.
+  const years = pieces.map((p) => p.year);
+  const min = Math.min(...years);
+  const max = Math.max(...years);
+  const yearRange = min === max ? String(min) : `${min} – ${String(max).slice(-2)}`;
+
   return (
     <article className="pt-32 md:pt-40">
       {/* Page header — minimal, lets the grid take over fast */}
@@ -28,7 +34,7 @@ export function Portfolio() {
               </div>
               <div>
                 <span className="label-wide text-pewter">Years</span>
-                <p className="display-italic mt-1 text-xl">2022 – 25</p>
+                <p className="display-italic mt-1 text-xl">{yearRange}</p>
               </div>
             </div>
           </ScrollReveal>
