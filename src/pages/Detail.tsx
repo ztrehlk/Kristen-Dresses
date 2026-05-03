@@ -70,47 +70,56 @@ export function Detail() {
         </div>
       </header>
 
-      {/* Hero shot — full-bleed cover */}
+      {/* Hero shot — capped so portrait photos don't overflow the viewport.
+          max-w bounds it on wide screens; max-h ensures even very tall
+          portraits stay within ~85vh and the user can see the whole image
+          without scrolling. object-contain preserves aspect inside those
+          bounds so nothing crops. */}
       <ScrollReveal>
-        <button
-          type="button"
-          data-cursor="hover"
-          onClick={() => setOpenIndex(0)}
-          className="reset-btn group block w-full overflow-hidden bg-bone-deep"
-          aria-label={`View ${piece.title}, image 1`}
-        >
-          <img
-            src={piece.coverImage}
-            alt={piece.title}
-            className="block w-full h-auto transition-transform duration-[1500ms] ease-editorial group-hover:scale-[1.02]"
-            draggable={false}
-          />
-        </button>
+        <div className="px-4 md:px-6">
+          <button
+            type="button"
+            data-cursor="hover"
+            onClick={() => setOpenIndex(0)}
+            className="reset-btn group mx-auto block max-w-4xl overflow-hidden bg-bone-deep"
+            aria-label={`View ${piece.title}, image 1`}
+          >
+            <img
+              src={piece.coverImage}
+              alt={piece.title}
+              className="mx-auto block h-auto max-h-[85vh] w-full object-contain transition-transform duration-[1500ms] ease-editorial group-hover:scale-[1.02]"
+              draggable={false}
+            />
+          </button>
+        </div>
       </ScrollReveal>
 
-      {/* Gallery grid: additional photos. Skip the section entirely for
-          pieces that only have a cover so far — avoids an empty container. */}
+      {/* Gallery grid: additional photos. Capped at max-w-6xl so it doesn't
+          stretch edge-to-edge on wide monitors. Skipped entirely when the
+          piece only has a cover (no extra container artifacts). */}
       {piece.images.length > 0 && (
         <section className="mt-4 md:mt-6 px-4 md:px-6">
-          <div className="gallery">
-            {piece.images.map((src, i) => (
-              <button
-                key={src}
-                type="button"
-                data-cursor="hover"
-                onClick={() => setOpenIndex(i + 1)}
-                aria-label={`View ${piece.title}, image ${i + 2}`}
-                className="reset-btn gallery-item group mb-4 block w-full overflow-hidden bg-bone-deep"
-              >
-                <img
-                  src={src}
-                  alt={`${piece.title} — ${i + 2}`}
-                  loading="lazy"
-                  className="block w-full h-auto transition-transform duration-[1200ms] ease-editorial group-hover:scale-[1.04]"
-                  draggable={false}
-                />
-              </button>
-            ))}
+          <div className="mx-auto max-w-6xl">
+            <div className="gallery">
+              {piece.images.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  data-cursor="hover"
+                  onClick={() => setOpenIndex(i + 1)}
+                  aria-label={`View ${piece.title}, image ${i + 2}`}
+                  className="reset-btn gallery-item group mb-4 block w-full overflow-hidden bg-bone-deep"
+                >
+                  <img
+                    src={src}
+                    alt={`${piece.title} — ${i + 2}`}
+                    loading="lazy"
+                    className="block w-full h-auto transition-transform duration-[1200ms] ease-editorial group-hover:scale-[1.04]"
+                    draggable={false}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </section>
       )}
