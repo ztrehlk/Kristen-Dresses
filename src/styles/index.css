@@ -9,7 +9,7 @@
   body {
     background-color: var(--color-canvas);
     color: var(--color-cream);
-    font-family: 'Geist', system-ui, sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -44,8 +44,12 @@
 }
 
 @layer utilities {
+  /*
+    UI labels — Outfit at heavier weight, uppercased and tracked out.
+    Outfit's geometric forms read clean at small caps sizes.
+  */
   .label {
-    font-family: 'Geist', system-ui, sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-size: 11px;
@@ -53,30 +57,48 @@
   }
 
   .label-wide {
-    font-family: 'Geist', system-ui, sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.28em;
     font-size: 10px;
     font-weight: 500;
   }
 
+  /*
+    Display headlines — Fraunces at the largest optical size (opsz 144),
+    medium-bold weight for confident editorial presence without feeling heavy.
+    The opsz axis makes hairlines thinner and serifs sharper at this size.
+  */
   .display-xl {
-    font-family: 'Bodoni Moda', serif;
-    font-weight: 400;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
     line-height: var(--leading-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    font-variation-settings: 'opsz' 144;
   }
 
+  /*
+    Display italic emphasis — same display optical size, italic axis on.
+    Used for the italicized words inside large headlines.
+  */
   .display-italic {
-    font-family: 'Bodoni Moda', serif;
+    font-family: 'Fraunces', serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144;
   }
 
+  /*
+    Editorial body — Fraunces at text optical size (opsz 24), Light weight.
+    Used on subtitles, About body, lookbook descriptions. Upright (not italic)
+    so paragraphs of body copy stay readable; reserve italic for the
+    display-italic emphasis treatment inside headlines.
+  */
   .editorial {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Fraunces', serif;
     font-weight: 300;
     line-height: var(--leading-snug);
+    font-variation-settings: 'opsz' 24;
   }
 
   .hairline {

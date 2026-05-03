@@ -13,9 +13,9 @@ export default {
         shadow: 'var(--color-shadow)',
       },
       fontFamily: {
-        display: ['"Bodoni Moda"', 'serif'],
-        sans: ['Geist', 'system-ui', 'sans-serif'],
-        editorial: ['"Cormorant Garamond"', 'serif'],
+        display: ['Fraunces', 'serif'],
+        sans: ['Outfit', 'system-ui', 'sans-serif'],
+        editorial: ['Fraunces', 'serif'],
       },
       letterSpacing: {
         'editorial': '0.02em',
