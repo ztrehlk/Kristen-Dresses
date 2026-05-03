@@ -6,8 +6,9 @@ import { heroImages, pieces } from '../data/collections';
 
 export function Home() {
   // Show a curated subset on the home grid; the full set lives at /portfolio.
-  // Cap at 5 so the home page feels selective and the "View all" CTA does work.
-  const featured = pieces.slice(0, 5);
+  // Six fills two even rows of three at the lg breakpoint; five would leave
+  // an orphan row of two.
+  const featured = pieces.slice(0, 6);
 
   return (
     <>

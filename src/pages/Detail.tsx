@@ -25,6 +25,20 @@ export function Detail() {
   );
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // Grid column count adapts to the photo count so a piece with 3 photos
+  // renders 3-across at lg, a piece with 2 renders 2-across, and a single
+  // photo renders centered at a sensible width. 4+ caps at 3 columns and
+  // wraps. Tailwind needs the full class name in source for tree-shaking,
+  // so we use a small lookup rather than a template string.
+  const count = allImages.length;
+  const gridColsClass =
+    count <= 1
+      ? 'grid-cols-1 max-w-md mx-auto'
+      : count === 2
+      ? 'grid-cols-1 sm:grid-cols-2'
+      : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+  const gapClass = 'gap-3 md:gap-4';
+
   if (!piece) {
     return <Navigate to="/portfolio" replace />;
   }
@@ -70,59 +84,39 @@ export function Detail() {
         </div>
       </header>
 
-      {/* Hero shot — capped so portrait photos don't overflow the viewport.
-          max-w bounds it on wide screens; max-h ensures even very tall
-          portraits stay within ~85vh and the user can see the whole image
-          without scrolling. object-contain preserves aspect inside those
-          bounds so nothing crops. */}
-      <ScrollReveal>
-        <div className="px-4 md:px-6">
-          <button
-            type="button"
-            data-cursor="hover"
-            onClick={() => setOpenIndex(0)}
-            className="reset-btn group mx-auto block max-w-4xl overflow-hidden bg-bone-deep"
-            aria-label={`View ${piece.title}, image 1`}
-          >
-            <img
-              src={piece.coverImage}
-              alt={piece.title}
-              className="mx-auto block h-auto max-h-[85vh] w-full object-contain transition-transform duration-[1500ms] ease-editorial group-hover:scale-[1.02]"
-              draggable={false}
-            />
-          </button>
-        </div>
-      </ScrollReveal>
-
-      {/* Gallery grid: additional photos. Capped at max-w-6xl so it doesn't
-          stretch edge-to-edge on wide monitors. Skipped entirely when the
-          piece only has a cover (no extra container artifacts). */}
-      {piece.images.length > 0 && (
-        <section className="mt-4 md:mt-6 px-4 md:px-6">
-          <div className="mx-auto max-w-6xl">
-            <div className="gallery">
-              {piece.images.map((src, i) => (
+      {/* All photos in a single equal-weight grid — no separate hero. The
+          column count adapts to the photo count so a piece with 3 photos
+          renders as 3 across (not 3 over 1), and a piece with just 1 photo
+          renders centered at a sensible width. Each tile uses object-cover
+          at a consistent 4:5 portrait aspect so rows align cleanly even
+          when source aspects vary. */}
+      <section className="px-4 md:px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className={['grid', gapClass, gridColsClass].join(' ')}>
+            {allImages.map((src, i) => (
+              <ScrollReveal key={src} delay={(i % 3) * 0.06}>
                 <button
-                  key={src}
                   type="button"
                   data-cursor="hover"
-                  onClick={() => setOpenIndex(i + 1)}
-                  aria-label={`View ${piece.title}, image ${i + 2}`}
-                  className="reset-btn gallery-item group mb-4 block w-full overflow-hidden bg-bone-deep"
+                  onClick={() => setOpenIndex(i)}
+                  aria-label={`View ${piece.title}, image ${i + 1}`}
+                  className="reset-btn group block w-full overflow-hidden bg-bone-deep"
                 >
-                  <img
-                    src={src}
-                    alt={`${piece.title} — ${i + 2}`}
-                    loading="lazy"
-                    className="block w-full h-auto transition-transform duration-[1200ms] ease-editorial group-hover:scale-[1.04]"
-                    draggable={false}
-                  />
+                  <div className="aspect-[4/5] w-full overflow-hidden">
+                    <img
+                      src={src}
+                      alt={`${piece.title} — ${i + 1}`}
+                      loading={i < 3 ? 'eager' : 'lazy'}
+                      className="block h-full w-full object-cover transition-transform duration-[1200ms] ease-editorial group-hover:scale-[1.04]"
+                      draggable={false}
+                    />
+                  </div>
                 </button>
-              ))}
-            </div>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       <Lightbox
         images={allImages}
@@ -162,20 +156,6 @@ export function Detail() {
         )}
       </nav>
 
-      <style>{`
-        .gallery {
-          column-count: 2;
-          column-gap: 1rem;
-        }
-        @media (min-width: 1024px) {
-          .gallery { column-count: 3; }
-        }
-        .gallery-item {
-          break-inside: avoid;
-          -webkit-column-break-inside: avoid;
-          page-break-inside: avoid;
-        }
-      `}</style>
     </article>
   );
 }
