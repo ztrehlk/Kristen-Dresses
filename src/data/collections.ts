@@ -49,6 +49,17 @@ export const pieces: Piece[] = [
     description: LOREM_MED,
   },
   {
+    slug: 'vesper',
+    title: 'Vesper',
+    year: 2025,
+    // Front view — direct, dramatic. The 3/4 angle goes to the gallery.
+    coverImage: local('vesper-01.jpeg'),
+    images: [
+      local('vesper-02.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
+  {
     slug: 'ruby',
     title: 'Ruby',
     year: 2025,
@@ -57,6 +68,17 @@ export const pieces: Piece[] = [
     images: [
       local('ruby-02.jpeg'),
       local('ruby-03.jpeg'),
+    ],
+    description: LOREM_SHORT,
+  },
+  {
+    slug: 'cocoa',
+    title: 'Cocoa',
+    year: 2025,
+    // Full-body portrait — the cropped torso shot becomes the gallery alt.
+    coverImage: local('cocoa-01.jpeg'),
+    images: [
+      local('cocoa-02.jpeg'),
     ],
     description: LOREM_SHORT,
   },
