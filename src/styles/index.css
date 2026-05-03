@@ -7,8 +7,8 @@
 @layer base {
   html,
   body {
-    background-color: var(--color-bone);
-    color: var(--color-ink);
+    background-color: var(--color-canvas);
+    color: var(--color-cream);
     font-family: 'Geist', system-ui, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -17,17 +17,18 @@
   }
 
   body {
-    /* Subtle paper grain — adds atmosphere without intruding. */
+    /* Subtle film-grain — light dots on dark background, almost invisible
+       but adds depth so pure-black sections don't feel flat. */
     background-image:
-      radial-gradient(rgba(15, 15, 16, 0.025) 1px, transparent 1px),
-      radial-gradient(rgba(15, 15, 16, 0.018) 1px, transparent 1px);
+      radial-gradient(rgba(240, 235, 221, 0.025) 1px, transparent 1px),
+      radial-gradient(rgba(240, 235, 221, 0.018) 1px, transparent 1px);
     background-size: 3px 3px, 7px 7px;
     background-position: 0 0, 1px 1px;
   }
 
   ::selection {
-    background-color: var(--color-ink);
-    color: var(--color-bone);
+    background-color: var(--color-cream);
+    color: var(--color-canvas);
   }
 
   /* Hide native cursor on desktop hover-capable devices when we render the custom one. */

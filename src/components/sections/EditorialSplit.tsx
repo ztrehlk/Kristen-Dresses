@@ -33,7 +33,7 @@ export function EditorialSplit({
           reversed ? 'md:order-2 md:col-start-6' : '',
         ].join(' ')}
       >
-        <div className="aspect-[4/5] w-full overflow-hidden bg-bone-deep">
+        <div className="aspect-[4/5] w-full overflow-hidden bg-surface">
           <img
             src={imageUrl}
             alt=""
@@ -51,16 +51,16 @@ export function EditorialSplit({
           reversed ? 'md:order-1 md:col-start-1' : '',
         ].join(' ')}
       >
-        <span className="label-wide text-pewter">{eyebrow}</span>
+        <span className="label-wide text-mute">{eyebrow}</span>
         <h2
           className="display-xl mt-5 text-5xl leading-[0.96] md:text-6xl"
           dangerouslySetInnerHTML={{ __html: title }}
         />
-        <p className="editorial mt-6 text-lg text-ink/80 md:text-xl">{body}</p>
+        <p className="editorial mt-6 text-lg text-cream/80 md:text-xl">{body}</p>
         <div className="mt-10">
           <Link
             to={cta.to}
-            className="group inline-flex items-center gap-3 border-b hairline-strong pb-2 label hover:border-ink transition-colors"
+            className="group inline-flex items-center gap-3 border-b hairline-strong pb-2 label hover:border-cream transition-colors"
           >
             {cta.label}
             <span className="inline-block transition-transform duration-500 ease-editorial group-hover:translate-x-2">

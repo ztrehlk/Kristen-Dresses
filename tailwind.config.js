@@ -4,11 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bone: 'var(--color-bone)',
-        ink: 'var(--color-ink)',
-        pewter: 'var(--color-pewter)',
+        canvas: 'var(--color-canvas)',
+        surface: 'var(--color-surface)',
+        'surface-2': 'var(--color-surface-2)',
+        cream: 'var(--color-cream)',
+        mute: 'var(--color-mute)',
         champagne: 'var(--color-champagne)',
-        smoke: 'var(--color-smoke)',
+        shadow: 'var(--color-shadow)',
       },
       fontFamily: {
         display: ['"Bodoni Moda"', 'serif'],

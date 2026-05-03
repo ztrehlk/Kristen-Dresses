@@ -31,8 +31,8 @@ export function Nav() {
         className={[
           'fixed inset-x-0 top-0 z-40 transition-colors duration-500',
           onLight
-            ? 'text-bone'
-            : 'text-ink bg-bone/85 backdrop-blur-md border-b hairline',
+            ? 'text-cream'
+            : 'text-cream bg-canvas/80 backdrop-blur-md border-b hairline',
         ].join(' ')}
       >
         <nav className="flex items-center justify-between px-6 py-5 md:px-10">
@@ -101,7 +101,7 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-30 flex flex-col bg-bone pt-24 md:hidden"
+            className="fixed inset-0 z-30 flex flex-col bg-canvas pt-24 md:hidden"
           >
             <ul className="flex flex-col gap-2 px-8">
               {NAV_LINKS.map((link, i) => (

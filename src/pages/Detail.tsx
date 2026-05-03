@@ -50,7 +50,7 @@ export function Detail() {
         <ScrollReveal>
           <Link
             to="/portfolio"
-            className="label inline-flex items-center gap-2 text-pewter hover:text-ink transition-colors"
+            className="label inline-flex items-center gap-2 text-mute hover:text-cream transition-colors"
           >
             <span aria-hidden>←</span> Back to Portfolio
           </Link>
@@ -65,18 +65,18 @@ export function Detail() {
           <ScrollReveal delay={0.12} className="md:col-span-4 md:col-start-9 md:pt-6">
             <div className="grid grid-cols-2 gap-6 border-t hairline pt-4">
               <div>
-                <span className="label-wide text-pewter">Year</span>
+                <span className="label-wide text-mute">Year</span>
                 <p className="display-italic mt-1 text-xl">{piece.year}</p>
               </div>
               <div>
-                <span className="label-wide text-pewter">Photos</span>
+                <span className="label-wide text-mute">Photos</span>
                 <p className="display-italic mt-1 text-xl">
                   {String(allImages.length).padStart(2, '0')}
                 </p>
               </div>
             </div>
             {piece.description && (
-              <p className="editorial mt-5 text-base text-ink/75 md:text-lg">
+              <p className="editorial mt-5 text-base text-cream/75 md:text-lg">
                 {piece.description}
               </p>
             )}
@@ -100,7 +100,7 @@ export function Detail() {
                   data-cursor="hover"
                   onClick={() => setOpenIndex(i)}
                   aria-label={`View ${piece.title}, image ${i + 1}`}
-                  className="reset-btn group block w-full overflow-hidden bg-bone-deep"
+                  className="reset-btn group block w-full overflow-hidden bg-surface"
                 >
                   <div className="aspect-[4/5] w-full overflow-hidden">
                     <img
@@ -131,9 +131,9 @@ export function Detail() {
         {prev && (
           <Link
             to={`/portfolio/${prev.slug}`}
-            className="group flex flex-col gap-1 px-6 py-8 text-left transition-colors hover:bg-bone-deep md:px-10 md:py-12"
+            className="group flex flex-col gap-1 px-6 py-8 text-left transition-colors hover:bg-surface md:px-10 md:py-12"
           >
-            <span className="label-wide text-pewter">
+            <span className="label-wide text-mute">
               ← Previous
             </span>
             <span className="display-italic text-3xl md:text-4xl">
@@ -144,9 +144,9 @@ export function Detail() {
         {next && (
           <Link
             to={`/portfolio/${next.slug}`}
-            className="group flex flex-col items-end gap-1 border-l hairline px-6 py-8 text-right transition-colors hover:bg-bone-deep md:px-10 md:py-12"
+            className="group flex flex-col items-end gap-1 border-l hairline px-6 py-8 text-right transition-colors hover:bg-surface md:px-10 md:py-12"
           >
-            <span className="label-wide text-pewter">
+            <span className="label-wide text-mute">
               Next →
             </span>
             <span className="display-italic text-3xl md:text-4xl">

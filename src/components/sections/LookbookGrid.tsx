@@ -32,7 +32,7 @@ export function LookbookGrid({ pieces }: Props) {
             to={`/portfolio/${piece.slug}`}
             data-cursor="hover"
             aria-label={`View ${piece.title}`}
-            className="masonry-item group relative mb-4 block overflow-hidden bg-bone-deep"
+            className="masonry-item group relative mb-4 block overflow-hidden bg-surface"
           >
             <img
               src={piece.coverImage}
@@ -43,14 +43,14 @@ export function LookbookGrid({ pieces }: Props) {
             />
 
             {/* Hover overlay: darken + reveal title from the bottom */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-shadow/80 via-shadow/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 px-4 pb-4 opacity-0 transition-all duration-500 ease-editorial group-hover:translate-y-0 group-hover:opacity-100">
-              <div className="flex items-end justify-between text-bone">
+              <div className="flex items-end justify-between text-cream">
                 <div>
                   <h3 className="display-italic text-2xl leading-none">
                     {piece.title}
                   </h3>
-                  <span className="label-wide mt-1.5 block text-bone/70">
+                  <span className="label-wide mt-1.5 block text-cream/70">
                     {piece.year}
                   </span>
                 </div>

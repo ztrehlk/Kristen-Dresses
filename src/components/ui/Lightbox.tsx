@@ -52,18 +52,18 @@ export function Lightbox({ images, title, index, onClose, onChange }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-50 flex flex-col bg-bone"
+          className="fixed inset-0 z-50 flex flex-col bg-canvas"
           onClick={onClose}
         >
           {/* Top bar */}
           <div className="flex items-center justify-between px-6 py-5 md:px-10">
-            <span className="label text-ink/70">
+            <span className="label text-cream/70">
               {String((index ?? 0) + 1).padStart(2, '0')} /{' '}
               {String(images.length).padStart(2, '0')}
             </span>
             <button
               type="button"
-              className="reset-btn label text-ink/70 hover:text-ink transition-colors"
+              className="reset-btn label text-cream/70 hover:text-cream transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 onClose();
@@ -128,7 +128,7 @@ export function Lightbox({ images, title, index, onClose, onChange }: Props) {
             <div className="mx-auto max-w-5xl border-t hairline pt-4">
               <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
                 <h3 className="display-italic text-2xl md:text-3xl">{title}</h3>
-                <span className="label text-ink/60">
+                <span className="label text-cream/60">
                   Image {String((index ?? 0) + 1).padStart(2, '0')}
                 </span>
               </div>

@@ -8,7 +8,7 @@ export function About() {
       <header className="px-6 pb-20 md:px-10 md:pb-28">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <ScrollReveal className="md:col-span-12">
-            <span className="label-wide text-pewter">— About</span>
+            <span className="label-wide text-mute">— About</span>
             <h1 className="display-xl mt-5 text-6xl leading-[0.95] md:text-8xl lg:text-[10rem]">
               Lorem ipsum{' '}
               <em className="display-italic">dolor sit amet.</em>
@@ -20,7 +20,7 @@ export function About() {
       {/* Editorial spread */}
       <section className="grid grid-cols-1 gap-12 px-6 md:grid-cols-12 md:gap-16 md:px-10">
         <ScrollReveal className="md:col-span-6">
-          <div className="aspect-[4/5] w-full overflow-hidden bg-bone-deep">
+          <div className="aspect-[4/5] w-full overflow-hidden bg-surface">
             <img
               src={heroImages.about}
               alt=""
@@ -28,7 +28,7 @@ export function About() {
               className="h-full w-full object-cover"
             />
           </div>
-          <p className="label mt-4 text-pewter">Lorem ipsum placeholder</p>
+          <p className="label mt-4 text-mute">Lorem ipsum placeholder</p>
         </ScrollReveal>
 
         <ScrollReveal delay={0.12} className="md:col-span-6 md:pt-16">
@@ -36,7 +36,7 @@ export function About() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <div className="mt-10 grid grid-cols-1 gap-6 text-base text-ink/80 md:text-lg">
+          <div className="mt-10 grid grid-cols-1 gap-6 text-base text-cream/80 md:text-lg">
             <p>
               Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -59,7 +59,7 @@ export function About() {
               &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               sed do eiusmod.&rdquo;
             </p>
-            <footer className="label mt-6 text-pewter">— Lorem</footer>
+            <footer className="label mt-6 text-mute">— Lorem</footer>
           </blockquote>
         </section>
       </ScrollReveal>
@@ -67,7 +67,7 @@ export function About() {
       {/* Three-column principles */}
       <section className="px-6 pb-20 md:px-10 md:pb-32">
         <ScrollReveal>
-          <span className="label-wide text-pewter">— Principles</span>
+          <span className="label-wide text-mute">— Principles</span>
         </ScrollReveal>
         <div className="mt-10 grid grid-cols-1 gap-10 border-t hairline pt-10 md:grid-cols-3 md:gap-16 md:pt-14">
           {[
@@ -89,11 +89,11 @@ export function About() {
           ].map((p, i) => (
             <ScrollReveal key={p.n} delay={i * 0.08}>
               <div>
-                <span className="display-italic text-5xl text-pewter md:text-6xl">
+                <span className="display-italic text-5xl text-mute md:text-6xl">
                   {p.n}
                 </span>
                 <h3 className="display-xl mt-4 text-2xl md:text-3xl">{p.title}</h3>
-                <p className="editorial mt-3 text-lg text-ink/75">{p.body}</p>
+                <p className="editorial mt-3 text-lg text-cream/75">{p.body}</p>
               </div>
             </ScrollReveal>
           ))}

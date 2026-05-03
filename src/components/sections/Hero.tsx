@@ -13,11 +13,12 @@ type Props = {
 
 /**
  * Full-bleed editorial hero. The image sits behind oversized type with a
- * gentle bottom gradient so the headline reads on a busy photo.
+ * gradient veil so the headline reads on a busy photo. Hero stays dark
+ * regardless of theme — uses the always-dark `shadow` token for the veil.
  */
 export function Hero({ imageUrl, eyebrow, title, subtitle, cta }: Props) {
   return (
-    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink text-bone">
+    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-canvas text-cream">
       {/* Background image */}
       <motion.div
         initial={{ scale: 1.08, opacity: 0 }}
@@ -33,10 +34,11 @@ export function Hero({ imageUrl, eyebrow, title, subtitle, cta }: Props) {
         />
       </motion.div>
 
-      {/* Gradient veil for legibility */}
+      {/* Gradient veil for legibility — uses shadow (always dark) so this
+          works correctly even if the page background is later re-themed. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-ink/40"
+        className="absolute inset-0 bg-gradient-to-t from-shadow/80 via-shadow/30 to-shadow/50"
       />
 
       {/* Content */}
@@ -45,7 +47,7 @@ export function Hero({ imageUrl, eyebrow, title, subtitle, cta }: Props) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="label-wide text-bone/80"
+          className="label-wide text-cream/80"
         >
           {eyebrow}
         </motion.span>
@@ -63,7 +65,7 @@ export function Hero({ imageUrl, eyebrow, title, subtitle, cta }: Props) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="editorial mt-6 max-w-xl text-bone/85 text-lg md:text-xl"
+            className="editorial mt-6 max-w-xl text-cream/85 text-lg md:text-xl"
           >
             {subtitle}
           </motion.p>
@@ -78,7 +80,7 @@ export function Hero({ imageUrl, eyebrow, title, subtitle, cta }: Props) {
           >
             <Link
               to={cta.to}
-              className="group inline-flex items-center gap-3 border-b border-bone/40 pb-2 label hover:border-bone transition-colors"
+              className="group inline-flex items-center gap-3 border-b border-cream/40 pb-2 label hover:border-cream transition-colors"
             >
               {cta.label}
               <span className="inline-block transition-transform duration-500 ease-editorial group-hover:translate-x-2">
@@ -94,12 +96,12 @@ export function Hero({ imageUrl, eyebrow, title, subtitle, cta }: Props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-bone/70"
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-cream/70"
         aria-hidden
       >
         <div className="flex flex-col items-center gap-3">
           <span className="label-wide">Scroll</span>
-          <span className="block h-10 w-px bg-bone/50 origin-top animate-[scroll-cue_2s_var(--ease-silk)_infinite]" />
+          <span className="block h-10 w-px bg-cream/50 origin-top animate-[scroll-cue_2s_var(--ease-silk)_infinite]" />
         </div>
         <style>{`
           @keyframes scroll-cue {

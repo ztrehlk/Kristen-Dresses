@@ -1,18 +1,26 @@
 /*
-  Design tokens for Kristen Andron.
-  Editorial-fashion palette: bone background, ink text, pewter for secondary,
-  champagne as a single warm accent. Tokens drive Tailwind's theme.
+  Design tokens — Obsidian Editorial.
+  Pure-black canvas, warm cream type, single champagne accent. High contrast,
+  cinematic, magazine-cover energy.
+
+  Tokens are referenced via CSS variables so we can re-theme without touching
+  Tailwind classes.
 */
 :root {
-  --color-bone: #FAF8F5;
-  --color-bone-deep: #F2EEE7;
-  --color-ink: #0F0F10;
-  --color-pewter: #8B847A;
-  --color-smoke: #C9C4BC;
-  --color-champagne: #C9B69A;
+  --color-canvas: #0A0A0B;       /* page background — near-black */
+  --color-surface: #16161A;      /* elevated surface, image loading bg */
+  --color-surface-2: #20201F;    /* second-level surface, hover states */
 
-  --hairline: rgba(15, 15, 16, 0.12);
-  --hairline-strong: rgba(15, 15, 16, 0.24);
+  --color-cream: #F0EBDD;        /* primary text */
+  --color-mute: #8B847A;         /* muted/secondary text */
+  --color-champagne: #C9B69A;    /* warm accent */
+
+  /* Always-dark token for image overlays / hero gradients. Independent of
+     theme so a future light theme wouldn't accidentally wash these out. */
+  --color-shadow: #000000;
+
+  --hairline: rgba(240, 235, 221, 0.12);
+  --hairline-strong: rgba(240, 235, 221, 0.24);
 
   /* Typography scale — editorial proportions, not browser defaults. */
   --leading-tight: 0.95;

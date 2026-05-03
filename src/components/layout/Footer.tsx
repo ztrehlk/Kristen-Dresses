@@ -10,14 +10,14 @@ export function Footer() {
               Kristen Andron
             </span>
           </Link>
-          <p className="editorial mt-4 max-w-md text-pewter text-lg">
+          <p className="editorial mt-4 max-w-md text-mute text-lg">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore.
           </p>
         </div>
 
         <div>
-          <h4 className="label-wide text-ink/60 mb-4">Index</h4>
+          <h4 className="label-wide text-cream/60 mb-4">Index</h4>
           <ul className="space-y-2.5">
             {[
               { to: '/portfolio', label: 'Portfolio' },
@@ -25,7 +25,7 @@ export function Footer() {
               { to: '/contact', label: 'Contact' },
             ].map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="text-sm hover:text-pewter transition-colors">
+                <Link to={l.to} className="text-sm hover:text-mute transition-colors">
                   {l.label}
                 </Link>
               </li>
@@ -34,14 +34,14 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="label-wide text-ink/60 mb-4">Elsewhere</h4>
+          <h4 className="label-wide text-cream/60 mb-4">Elsewhere</h4>
           <ul className="space-y-2.5">
             <li>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm hover:text-pewter transition-colors"
+                className="text-sm hover:text-mute transition-colors"
               >
                 Instagram
               </a>
@@ -51,7 +51,7 @@ export function Footer() {
                 href="https://pinterest.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm hover:text-pewter transition-colors"
+                className="text-sm hover:text-mute transition-colors"
               >
                 Pinterest
               </a>
@@ -59,7 +59,7 @@ export function Footer() {
             <li>
               <a
                 href="mailto:hello@kristenandron.com"
-                className="text-sm hover:text-pewter transition-colors"
+                className="text-sm hover:text-mute transition-colors"
               >
                 hello@kristenandron.com
               </a>
@@ -69,10 +69,10 @@ export function Footer() {
       </div>
 
       <div className="mt-16 flex flex-col-reverse gap-3 border-t hairline pt-6 md:flex-row md:items-center md:justify-between">
-        <span className="label text-ink/50">
+        <span className="label text-cream/50">
           © {new Date().getFullYear()} Kristen Andron. All rights reserved.
         </span>
-        <span className="label text-ink/50">Lorem ipsum dolor sit amet.</span>
+        <span className="label text-cream/50">Lorem ipsum dolor sit amet.</span>
       </div>
     </footer>
   );
